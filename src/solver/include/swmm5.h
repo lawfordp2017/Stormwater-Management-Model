@@ -144,7 +144,9 @@ int    DLLEXPORT swmm_getCount(int objType);
 void   DLLEXPORT swmm_getName(int objType, int index, char *name, int size);
 int    DLLEXPORT swmm_getIndex(int objType, const char *name);
 double DLLEXPORT swmm_getValue(int property, int index);
+double DLLEXPORT swmm_getGroupValue(int property, int index, int subindex);
 void   DLLEXPORT swmm_setValue(int property, int index,  double value);
+void   DLLEXPORT swmm_setGroupValue(int property, int index, int subindex, double value);
 double DLLEXPORT swmm_getSavedValue(int property, int index, int period);
 void   DLLEXPORT swmm_writeLine(const char *line);
 void   DLLEXPORT swmm_decodeDate(double date, int *year, int *month, int *day,

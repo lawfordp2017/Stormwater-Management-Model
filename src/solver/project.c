@@ -1064,6 +1064,7 @@ void createObjects()
     {
         Node[j].oldQual = (double *) calloc(Nobjects[POLLUT], sizeof(double));
         Node[j].newQual = (double *) calloc(Nobjects[POLLUT], sizeof(double));
+        Node[j].apiExtQualInflow = (double *) calloc(Nobjects[POLLUT], sizeof(double));
         Node[j].extInflow = NULL;
         Node[j].dwfInflow = NULL;
         Node[j].rdiiInflow = NULL;

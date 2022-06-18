@@ -525,6 +525,7 @@ typedef struct
    double        oldNetInflow;    // previous net inflow
    double        qualInflow;      // inflow seen for quality routing (cfs)
    double        apiExtInflow;    // inflow from swmm_setValue function (cfs)
+   double*       apiExtQualInflow;    // quality inflow from swmm_setGroupValue function (mass)
 
 }  TNode;
 

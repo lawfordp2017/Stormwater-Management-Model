@@ -862,6 +862,11 @@ double  DLLEXPORT swmm_getValue(int property, int index)
     return 0;
 }
 
+double DLLEXPORT swmm_getGroupValue(int property, int index, int subindex)
+{
+    return Node[index].newQual[subindex];
+}
+
 //=============================================================================
 
 void  DLLEXPORT swmm_setValue(int property, int index, double value)
@@ -915,6 +920,19 @@ void  DLLEXPORT swmm_setValue(int property, int index, double value)
             RptFlags.disabled = (value > 0.0);
         return;
     }
+}
+
+
+//=============================================================================
+
+
+void  DLLEXPORT swmm_setGroupValue(int property, int index, int subindex, double value)
+{
+    if (!IsOpenFlag)
+        return;
+
+    Node[index].apiExtQualInflow[subindex] = value;
+    return;
 }
 
 //=============================================================================

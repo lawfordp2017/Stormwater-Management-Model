@@ -439,7 +439,7 @@ void addExternalInflows(DateTime currentDate)
 //  Purpose: adds direct external inflows to nodes at current date.
 //
 {
-    int     j, p;
+    int     j, k, p;
     double  q, w;
     TExtInflow* inflow;
 
@@ -474,6 +474,15 @@ void addExternalInflows(DateTime currentDate)
         if ( Node[j].type == OUTFALL && Node[j].oldNetInflow < 0.0 ) 
         {
             q = q - Node[j].oldNetInflow;
+        }
+
+        // --- get pollutant mass inflows from API
+        for (k = 0; k < Nobjects[POLLUT]; k++) {
+            if (Node[j].apiExtQualInflow[k] > 0) {
+                w = Node[j].apiExtQualInflow[k];
+                Node[j].newQual[p] += w;
+                massbal_addInflowQual(EXTERNAL_INFLOW, p, w);
+            }
         }
 
         // --- get pollutant mass inflows

@@ -29,12 +29,22 @@
 //-----------------------------------------------------------------------------
 #define _CRT_SECURE_NO_DEPRECATE
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdint.h>
+
 // Large File Support
 #ifdef _MSC_VER    // Windows (32-bit and 64-bit)
   #define F_OFF __int64
   #define F_SEEK _fseeki64
-#elif              // Other platforms
-  #define F_OFF off64_t
+#else              // Other platforms
+  #if UINTPTR_MAX == 0xffffffff
+  /* 32-bit */
+    #define F_OFF off64_t
+  #else  // UINTPTR_MAX == 0xffffffffffffffff
+  /* 64-bit */
+    #define F_OFF off_t
+  #endif
   #define F_SEEK fseeko
 #endif
 
